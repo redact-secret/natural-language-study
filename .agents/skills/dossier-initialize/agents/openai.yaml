@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dossier Initialize"
+  short_description: "Scope a new or existing NER language dossier"
+  default_prompt: "Use $dossier-initialize to complete the requested language research in this repository."

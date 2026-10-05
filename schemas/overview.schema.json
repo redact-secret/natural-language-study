@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Language dossier YAML front matter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "language_key",
+    "display_name",
+    "language_tags",
+    "scripts",
+    "id_prefix",
+    "status",
+    "scope",
+    "research_issues",
+    "updated"
+  ],
+  "properties": {
+    "language_key": {
+      "type": "string",
+      "pattern": "^[a-z]+(?:-[a-z]+)*$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "scripts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][a-z]{3}$"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "id_prefix": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "archived"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "varieties",
+        "regions",
+        "registers",
+        "domains",
+        "entity_types"
+      ],
+      "properties": {
+        "varieties": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "registers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      }
+    },
+    "research_issues": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://"
+      },
+      "uniqueItems": true
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}

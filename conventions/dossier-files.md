@@ -23,7 +23,9 @@ Scope regional or register variation inside the dossier first. Create a separate
 | `ambiguity.md` | Person/non-person collisions and context-dependent readings. |
 | `mixed-script.md` | Transliteration, script mixing, and code switching. |
 
-Topic files are optional syntheses. Add other kebab-case topics when justified, then index them in `overview.md`. A minimal dossier contains an overview, source records, and the findings required by its research question.
+A single-question dossier may use only overview, sources and canonical findings. A requested broad language dossier, including the initial four-language wave, also needs substantive `morphology.md`, `tokenization.md`, `person-names.md`, `entity-boundaries.md`, `ambiguity.md` and `mixed-script.md` syntheses. Index each in the overview. A topic must answer a scoped question with sourced observations, a challenging contrast, an NER implication and an explicit gap; a heading or finding-link list alone does not satisfy coverage.
+
+Distinguish **breadth delivered** (the requested topic syntheses exist with substantive research) from **review completed** and **hypotheses evaluated**. Draft desk research can deliver breadth while every topic remains in-progress. Do not claim exhaustive language coverage. For an inapplicable dimension, explain the scoped exclusion instead of inventing content. Add other kebab-case topics only when useful.
 
 Cross-language synthesis lives at `comparative/<topic>.md`. It cites finding IDs and scoped comparisons; it must not duplicate or silently strengthen the original claims.
 
@@ -167,6 +169,10 @@ limitations: []
 ```
 
 Source records may be written as Markdown entries containing these fields. Never fill templates with fabricated bibliography. Cite only a short excerpt when necessary; prefer original summaries and links. Source material retains its original rights.
+
+## Machine-checkable contracts
+
+The [metadata schemas and validation guide](../schemas/README.md) implement these patterns. Use the [finding template](../templates/finding.md), [research taxonomy](../taxonomy.md) and [research issues](../research/README.md) when extending the initial four-language wave. Automated validation checks structure, not linguistic correctness.
 
 ## Completion check
 

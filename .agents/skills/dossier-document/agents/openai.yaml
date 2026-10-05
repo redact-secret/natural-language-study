@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dossier Document"
+  short_description: "Turn research into findings and decision briefs"
+  default_prompt: "Use $dossier-document to complete the requested language research in this repository."

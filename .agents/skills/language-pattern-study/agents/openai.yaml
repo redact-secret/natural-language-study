@@ -1,0 +1,4 @@
+interface:
+  display_name: "Language Pattern Study"
+  short_description: "Compare boundary patterns across scoped languages"
+  default_prompt: "Use $language-pattern-study to complete the requested language research in this repository."

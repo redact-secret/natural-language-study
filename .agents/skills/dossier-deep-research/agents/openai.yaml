@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dossier Deep Research"
+  short_description: "Verify linguistic claims and seek counterexamples"
+  default_prompt: "Use $dossier-deep-research to complete the requested language research in this repository."

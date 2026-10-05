@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research finding YAML front matter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "language_tags",
+    "topic",
+    "status",
+    "observation_confidence",
+    "hypothesis_outcome",
+    "source_ids",
+    "research_issues",
+    "downstream",
+    "created",
+    "updated",
+    "review",
+    "supersedes",
+    "superseded_by"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}-[0-9]{3,}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "topic": {
+      "enum": [
+        "writing-system",
+        "segmentation",
+        "morphology",
+        "naming-practices",
+        "casing",
+        "entity-boundaries",
+        "script-mixing",
+        "ambiguity",
+        "context-and-word-order",
+        "domain-and-register"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "reviewed",
+        "superseded",
+        "withdrawn"
+      ]
+    },
+    "observation_confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "hypothesis_outcome": {
+      "enum": [
+        "untested",
+        "inconclusive",
+        "supported",
+        "not-supported"
+      ]
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{3}-S[0-9]{3,}$"
+      },
+      "uniqueItems": true
+    },
+    "research_issues": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://"
+      },
+      "uniqueItems": true
+    },
+    "downstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ner_evidence",
+        "ner_eval",
+        "fastner",
+        "fastner_benchmarks"
+      ],
+      "properties": {
+        "ner_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "uniqueItems": true
+        },
+        "ner_eval": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "uniqueItems": true
+        },
+        "fastner": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "uniqueItems": true
+        },
+        "fastner_benchmarks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewer",
+        "date",
+        "scope"
+      ],
+      "properties": {
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      }
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[A-Z]{3}-[0-9]{3,}$"
+      },
+      "uniqueItems": true
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[A-Z]{3}-[0-9]{3,}$"
+      },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "reviewed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source_ids": {
+            "minItems": 1
+          },
+          "review": {
+            "properties": {
+              "reviewer": {
+                "type": "string",
+                "minLength": 1
+              },
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "scope": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
